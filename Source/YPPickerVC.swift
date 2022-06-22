@@ -228,7 +228,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
 
         // Use custom textColor if set by user.
         if let navBarTitleColor = UINavigationBar.appearance().titleTextAttributes?[.foregroundColor] as? UIColor {
-            label.textColor = navBarTitleColor
+            label.textColor = YPConfig.colors.tintColor
         }
         
         if YPConfig.library.options != nil {
@@ -241,12 +241,12 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             let arrow = UIImageView()
             arrow.image = YPConfig.icons.arrowDownIcon
             arrow.image = arrow.image?.withRenderingMode(.alwaysTemplate)
-            arrow.tintColor = .ypLabel
+            arrow.tintColor = YPConfig.colors.tintColor
             
             let attributes = UINavigationBar.appearance().titleTextAttributes
-            if let attributes = attributes, let foregroundColor = attributes[.foregroundColor] as? UIColor {
+            if let attributes = attributes {
                 arrow.image = arrow.image?.withRenderingMode(.alwaysTemplate)
-                arrow.tintColor = foregroundColor
+                arrow.tintColor = YPConfig.colors.tintColor
             }
             
             let button = UIButton()
@@ -276,6 +276,8 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                                style: .plain,
                                                                target: self,
                                                                action: #selector(close))
+            
+            navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.tintColor
         }
         switch mode {
         case .library:
